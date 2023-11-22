@@ -2,6 +2,14 @@
 #include "MacUILib.h"
 #include "objPos.h"
 
+#include "GameMechs.h"
+#include "Player.h"
+
+//Objects
+
+GameMechs* GameMech;
+Player* playerObject;
+
 
 using namespace std;
 

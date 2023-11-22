@@ -10,6 +10,7 @@
 GameMechs* GameMech;
 Player* playerObject;
 
+objPos myPos;
 
 using namespace std;
 
@@ -49,6 +50,8 @@ void Initialize(void)
     MacUILib_init();
     MacUILib_clearScreen();
 
+    myPos.setObjPos(2, 3, '*');
+
     exitFlag = false;
 }
 
@@ -59,12 +62,14 @@ void GetInput(void)
 
 void RunLogic(void)
 {
-    
+    char input = GameMech->getInput();
 }
 
 void DrawScreen(void)
 {
-    MacUILib_clearScreen();    
+    MacUILib_clearScreen();  
+
+    MacUILib_printf("Object: <%d, %d> with %c\n", myPos.x, myPos.y, myPos.symbol);  
 
 }
 

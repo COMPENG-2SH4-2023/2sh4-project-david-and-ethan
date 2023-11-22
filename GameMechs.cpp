@@ -8,7 +8,7 @@ GameMechs::GameMechs()
     exitFlag = false;
     loseFlag = false;
 
-    input = NULL;
+    input = '\0';
     score = 0;
 
 }
@@ -21,18 +21,13 @@ GameMechs::GameMechs(int boardX, int boardY)
     exitFlag = false;
     loseFlag = false;
 
-    input = NULL;
+    input = '\0';
     score = 0;
 }
 
 // do you need a destructor?
 
-GameMechs::~GameMechs() 
-{
 
-    
-	
-}
 
 bool GameMechs::getExitFlagStatus()
 {
@@ -65,7 +60,7 @@ void GameMechs::setInput(char this_input)
 
 void GameMechs::clearInput()
 {
-    input = NULL;
+    input = '\0';
 }
 
 

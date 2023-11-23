@@ -8,8 +8,8 @@
 //Objects ===================
 
 GameMechs* GameMechRef;
-Player* playerObject;
 objPos* myPos;
+Player* playerObject;
 int **gridScreen;
 
 //===========================
@@ -53,7 +53,9 @@ void Initialize(void)
     MacUILib_clearScreen();
 
     GameMechRef = new GameMechs(30,15);
-
+    playerObject = new Player(GameMechRef);
+    myPos = new objPos();
+    
 //Initialize Gridscreen object array to the heap ====================
 
     gridScreen = new int*[GameMechRef->getBoardSizeX() + 2]; //Plus 2 to account for \n and null character(Actually not sure if we need to account for null character)
@@ -75,6 +77,11 @@ void GetInput(void)
 void RunLogic(void)
 {
 
+    (*playerObject).getPlayerPos(*myPos);
+    int Playerx = (*myPos).x;
+    int Playery = (*myPos).y;
+    char Playersymbol = (*myPos).symbol;
+
 //Assign Members to Grid ============================================
 
     for(int y = 0; y < GameMechRef->getBoardSizeY(); y++)
@@ -82,7 +89,12 @@ void RunLogic(void)
         for(int x = 0; x < GameMechRef->getBoardSizeX(); x++)
         {
 
-            if(x == 0 || x == GameMechRef->getBoardSizeX() - 2)
+            if(x == Playerx && y == Playery)
+            {
+                gridScreen[x][y] = Playersymbol;
+            
+            }
+            else if(x == 0 || x == GameMechRef->getBoardSizeX() - 2)
             {
                 gridScreen[x][y] = '#';
 

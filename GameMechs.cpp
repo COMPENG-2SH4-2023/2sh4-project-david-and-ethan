@@ -91,18 +91,20 @@ void GameMechs::incrementScore()
 void GameMechs::generateFood(objPos blockOff)
 {
     srand(time(NULL));
+
+    foodPos.symbol = 'O';
  
     int unique = 0;
 
-    foodPos.x = (rand() % (boardSizeX)) + 1;
-    foodPos.y = (rand() % (boardSizeY)) + 1;
+    foodPos.x = (rand() % (boardSizeX - 2)) + 1;
+    foodPos.y = (rand() % (boardSizeY - 1)) + 1;
 
     do
     {
         if(blockOff.x == foodPos.x && blockOff.y == foodPos.y)
         {
-            foodPos.x = (rand() % (boardSizeX)) + 1;
-            foodPos.y = (rand() % (boardSizeY)) + 1;
+            foodPos.x = (rand() % (boardSizeX - 2)) + 1;
+            foodPos.y = (rand() % (boardSizeY - 1)) + 1;
 
         }else
         {
@@ -115,10 +117,8 @@ void GameMechs::generateFood(objPos blockOff)
 
 void GameMechs::getFoodPos(objPos &returnPos)
 {
-
     returnPos.x = foodPos.x;
     returnPos.y = foodPos.y;
     returnPos.symbol = foodPos.symbol;
-
 }
 

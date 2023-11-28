@@ -12,6 +12,8 @@ objPos* myPos;
 Player* playerObject;
 int **gridScreen;
 
+objPos* foodPos;
+
 //===========================
 
 using namespace std;
@@ -55,6 +57,7 @@ void Initialize(void)
     GameMechRef = new GameMechs(30,15);
     playerObject = new Player(GameMechRef);
     myPos = new objPos();
+    foodPos = new objPos();
     
 //Initialize Gridscreen object array to the heap ====================
 
@@ -67,6 +70,8 @@ void Initialize(void)
 //===================================================================
 
     myPos->setObjPos(2, 3, '*');
+
+    GameMechRef->generateFood(*myPos);
 
     exitFlag = false;
 }
@@ -83,6 +88,8 @@ void RunLogic(void)
     int Playerx = (*myPos).x;
     int Playery = (*myPos).y;
     char Playersymbol = (*myPos).symbol;
+
+    GameMechRef->getFoodPos(*foodPos);
 
 //Assign Members to Grid ============================================
 
@@ -113,6 +120,12 @@ void RunLogic(void)
             {
                 gridScreen[x][y] = '\n';   
             }
+
+            if(x == (*foodPos).x &&  y == (*foodPos).y)
+            {
+                gridScreen[x][y] = (*foodPos).symbol;
+
+            }
         }
     }
 //======================================================
@@ -136,7 +149,7 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Object: <%d, %d> with %c\n", myPos->x, myPos->y, myPos->symbol);
-    //Haven't setup myPos so uh this breaks
+
 }
 
 void LoopDelay(void)

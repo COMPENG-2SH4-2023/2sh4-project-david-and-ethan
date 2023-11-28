@@ -150,6 +150,29 @@ void DrawScreen(void)
 
     MacUILib_printf("Object: <%d, %d> with %c\n", myPos->x, myPos->y, myPos->symbol);
 
+    switch(GameMechRef->getInput())
+    {
+        case '\0':
+            printf("Snake Direction: STOP\n");
+            break;
+
+        case 'w':
+            printf("Snake Direction: UP\n");
+            break;
+
+        case 's':
+            printf("Snake Direction: DOWN\n");
+            break;
+
+        case 'a':
+            printf("Snake Direction: LEFT\n");
+            break;
+
+        case 'd':
+            printf("Snake Direction: RIGHT\n");
+            break;
+    }
+
 }
 
 void LoopDelay(void)

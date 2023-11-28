@@ -66,6 +66,8 @@ void Initialize(void)
 	}
 //===================================================================
 
+    myPos->setObjPos(2, 3, '*');
+
     exitFlag = false;
 }
 
@@ -133,7 +135,7 @@ void DrawScreen(void)
         }       
     }
 
-    //MacUILib_printf("Object: <%d, %d> with %c\n", myPos.x, myPos.y, myPos.symbol);
+    MacUILib_printf("Object: <%d, %d> with %c\n", myPos->x, myPos->y, myPos->symbol);
     //Haven't setup myPos so uh this breaks
 }
 

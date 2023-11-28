@@ -127,5 +127,23 @@ void Player::updatePlayerDir()
 void Player::movePlayer()
 {
     // PPA3 Finite State Machine logic
+
+    if(myDir == UP)
+    {
+        playerPos.y -= 1;
+    }
+    if(myDir == DOWN)
+    {
+        playerPos.y += 1;
+    }
+    if(myDir == RIGHT)
+    {
+        playerPos.x += 1;
+    }
+    if(myDir == LEFT)
+    {
+        playerPos.x-= 1;
+    }
+
 }
 

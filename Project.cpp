@@ -84,12 +84,20 @@ void GetInput(void)
 void RunLogic(void)
 {
 
+//Move Player =====
+
+    (*playerObject).updatePlayerDir();
+    (*playerObject).movePlayer();
+
+//================
+
     (*playerObject).getPlayerPos(*myPos);
     int Playerx = (*myPos).x;
     int Playery = (*myPos).y;
     char Playersymbol = (*myPos).symbol;
 
     GameMechRef->getFoodPos(*foodPos);
+
 
 //Assign Members to Grid ============================================
 

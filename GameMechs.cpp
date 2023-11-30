@@ -104,7 +104,7 @@ void GameMechs::generateFood(objPos blockOff)
         if(blockOff.x == foodPos.x && blockOff.y == foodPos.y)
         {
             foodPos.x = (rand() % (boardSizeX - 3)) + 1;
-            foodPos.y = (rand() % (boardSizeY - 1)) + 1;
+            foodPos.y = (rand() % (boardSizeY - 2)) + 1;
 
         }else
         {

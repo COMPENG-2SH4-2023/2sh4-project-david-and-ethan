@@ -19,17 +19,36 @@ Player::~Player()
 
 void Player::getPlayerPos(objPos &returnPos)
 {
-     returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
+
+//Border Wrap Code ====================================================
+    if(playerPos.y > (mainGameMechsRef->getBoardSizeY() - 2))
+    {
+        playerPos.y = 1;
+    }
+    if(playerPos.y < 1)
+    {
+        playerPos.y = (mainGameMechsRef->getBoardSizeY() - 2);
+    }
+
+    if(playerPos.x > (mainGameMechsRef->getBoardSizeX() - 3))
+    {
+        playerPos.x = 1;
+    }
+    if(playerPos.x < 1)
+    {
+        playerPos.x = (mainGameMechsRef->getBoardSizeX() - 3);
+    }
+//====================================================
+    
+    returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
     // return the reference to the playerPos arrray list
 }
 
 void Player::updatePlayerDir()
 {
-    (*mainGameMechsRef).setInput('D');
-
-    char input = 'D';
-    
+    char input = (*mainGameMechsRef).getInput();
     // PPA3 input processing logic   
+
     switch(input)
         {                      
             case 'w':
@@ -67,6 +86,7 @@ void Player::updatePlayerDir()
             default:
                 break;
         }
+
 }
 
 void Player::movePlayer()
@@ -91,4 +111,3 @@ void Player::movePlayer()
     }
 
 }
-

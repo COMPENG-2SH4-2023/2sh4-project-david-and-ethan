@@ -93,8 +93,8 @@ void RunLogic(void)
 
     playerObject->getPlayerPos(*myPos);
 
-    int Playerx = myPos->x;
-    int Playery = myPos->y;
+    //Just resets myPos, not playerpos. So when you copy playerpos back into mypos it just pops back out?
+
     char Playersymbol = myPos->symbol;
 
     GameMechRef->getFoodPos(*foodPos);
@@ -107,10 +107,11 @@ void RunLogic(void)
         for(int x = 0; x < GameMechRef->getBoardSizeX(); x++)
         {
 
-            if(x == Playerx && y == Playery)
+            if(x == myPos->x && y == myPos->y)
             {
-                gridScreen[x][y] = Playersymbol;
-            
+
+                gridScreen[myPos->x][myPos->y] = Playersymbol;
+    
             }
             else if(x == 0 || x == GameMechRef->getBoardSizeX() - 2)
             {
@@ -158,7 +159,6 @@ void DrawScreen(void)
     }
 
     MacUILib_printf("Object: <%d, %d> with %c\n", myPos->x, myPos->y, myPos->symbol);
-    MacUILib_printf("Player: <%d, %d> %c", playerObject->playerPos.x, playerObject->playerPos.y, GameMechRef->input);
 
     switch(GameMechRef->getInput())
     {

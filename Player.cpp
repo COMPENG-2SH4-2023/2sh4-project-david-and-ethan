@@ -114,13 +114,6 @@ void Player::movePlayer()
     objPos currentHead;    //holding the pos info of the current head
     playerPosList->getHeadElement(currentHead);
 
-
-    if(currentHead.y == 1)
-    {
-        mainGameMechsRef->generateFood(playerPosList);
-
-    }
-
     if(myDir == UP)
     {
         currentHead.y -= 1;
@@ -166,14 +159,13 @@ void Player::movePlayer()
     if(currentHead.isPosEqual(&foodPosRef))
     {
         playerPosList->insertHead(currentHead);
+
         mainGameMechsRef->generateFood(playerPosList);
 
     }else
     {
-        
         playerPosList->insertHead(currentHead);
         playerPosList->removeTail();
-
     }
 
 }

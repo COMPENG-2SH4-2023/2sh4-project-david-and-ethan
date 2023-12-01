@@ -72,7 +72,9 @@ void Initialize(void)
 
     //makeshift objPos tempPos(1, 1, 'O');
 
-    //GameMechRef->generateFood();
+    objPosArrayList* playerBody = playerObject->getPlayerPos();
+
+    GameMechRef->generateFood(playerBody);
 
     exitFlag = false;
 }
@@ -95,9 +97,6 @@ void RunLogic(void)
     playerObject->movePlayer();
 
 //================
-
-    //playerObject->getPlayerPos(*myPos);
-    
 
     //Just resets myPos, not playerpos. So when you copy playerpos back into mypos it just pops back out?
 

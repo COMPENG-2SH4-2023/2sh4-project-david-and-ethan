@@ -1,7 +1,7 @@
 #include <iostream>
 #include "MacUILib.h"
 #include "objPos.h"
-
+#include "objPosArrayList.h"
 #include "GameMechs.h"
 #include "Player.h"
 
@@ -69,9 +69,11 @@ void Initialize(void)
 	}
 //===================================================================
 
-    myPos->setObjPos(2, 3, '*');
 
-    GameMechRef->generateFood(*myPos);
+    //makeshift 
+    objPos tempPos(-1, -1, 'o');
+
+    GameMechRef->generateFood(tempPos);
 
     exitFlag = false;
 }
@@ -83,6 +85,10 @@ void GetInput(void)
 
 void RunLogic(void)
 {
+    bool drawn;
+
+    objPosArrayList* playerBody = playerObject->getPlayerPos();
+    objPos tempBody;
 
 //Move Player =====
 
@@ -91,7 +97,8 @@ void RunLogic(void)
 
 //================
 
-    playerObject->getPlayerPos(*myPos);
+    //playerObject->getPlayerPos(*myPos);
+    
 
     //Just resets myPos, not playerpos. So when you copy playerpos back into mypos it just pops back out?
 
@@ -107,13 +114,30 @@ void RunLogic(void)
         for(int x = 0; x < GameMechRef->getBoardSizeX(); x++)
         {
 
-            if(x == myPos->x && y == myPos->y)
+            drawn = false;
+
+            //iterates through every element in list
+            for(int k = 0; k < playerBody->getSize(); k++)
+            {
+                playerBody->getElement(tempBody, k);
+                if(tempBody.x == x && tempBody.y == y)
+                {
+                    gridScreen[x][y] = tempBody.symbol;
+                    drawn = true;
+                    break;
+                    //MacUILib_printf("%c", tempBody.symbol);
+                }
+            }
+            /*if(x == myPos->x && y == myPos->y)
             {
 
                 gridScreen[myPos->x][myPos->y] = Playersymbol;
     
-            }
-            else if(x == 0 || x == GameMechRef->getBoardSizeX() - 2)
+            }*/
+
+            if(drawn) continue;
+
+            if(x == 0 || x == GameMechRef->getBoardSizeX() - 2)
             {
                 gridScreen[x][y] = '#';
 
@@ -125,6 +149,7 @@ void RunLogic(void)
             {
                 gridScreen[x][y] = ' ';
             }
+
 
             if (x == GameMechRef->getBoardSizeX() -1)
             {
@@ -158,7 +183,12 @@ void DrawScreen(void)
         }       
     }
 
-    MacUILib_printf("Object: <%d, %d> with %c\n", myPos->x, myPos->y, myPos->symbol);
+    /*MacUILib_printf("Object:\n");
+    for(int l = 0; l < playerBody->getSize(); l++)
+    {
+        playerBody->getElement(tempBody, l);
+        MacUILib_printf("<%d, %d> ", tempBody.x, tempBody.y);
+    }*/
 
     switch(GameMechRef->getInput())
     {

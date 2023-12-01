@@ -188,6 +188,8 @@ void DrawScreen(void)
         MacUILib_printf("<%d, %d> ", tempBody.x, tempBody.y);
     }*/
 
+    MacUILib_printf("\nSCORE:%d\n", GameMechRef->getScore());
+
     switch(GameMechRef->getInput())
     {
         case '\0':

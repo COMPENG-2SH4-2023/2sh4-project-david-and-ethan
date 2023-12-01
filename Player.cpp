@@ -66,7 +66,7 @@ void Player::updatePlayerDir()
     // PPA3 input processing logic   
 
     switch(input)
-        {                      
+        {    
             case 'w':
             case 'W':
             if(myDir != DOWN)
@@ -159,8 +159,8 @@ void Player::movePlayer()
     if(currentHead.isPosEqual(&foodPosRef))
     {
         playerPosList->insertHead(currentHead);
-
         mainGameMechsRef->generateFood(playerPosList);
+        mainGameMechsRef->incrementScore();
 
     }else
     {

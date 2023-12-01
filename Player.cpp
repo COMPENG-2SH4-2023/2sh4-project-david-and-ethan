@@ -16,10 +16,10 @@ Player::Player(GameMechs* thisGMRef)
     playerPosList->insertHead(tempPos);
 
     // For debuggin, insert another 4 segments
+    /*playerPosList->insertHead(tempPos);
     playerPosList->insertHead(tempPos);
     playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
+    playerPosList->insertHead(tempPos);*/
 
 
 }
@@ -114,6 +114,13 @@ void Player::movePlayer()
     objPos currentHead;    //holding the pos info of the current head
     playerPosList->getHeadElement(currentHead);
 
+
+    if(currentHead.y == 1)
+    {
+        mainGameMechsRef->generateFood(playerPosList);
+
+    }
+
     if(myDir == UP)
     {
         currentHead.y -= 1;
@@ -154,14 +161,19 @@ void Player::movePlayer()
 
     }
 
-    
+    mainGameMechsRef->getFoodPos(foodPosRef);
 
+    if(currentHead.isPosEqual(&foodPosRef))
+    {
+        playerPosList->insertHead(currentHead);
+        mainGameMechsRef->generateFood(playerPosList);
 
-   
-    // new current hed should be inserted t othe head of the llist
-   playerPosList->insertHead(currentHead);
+    }else
+    {
+        
+        playerPosList->insertHead(currentHead);
+        playerPosList->removeTail();
 
-    // then, remove tail
-    playerPosList->removeTail();
+    }
 
 }

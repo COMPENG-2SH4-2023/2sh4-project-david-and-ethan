@@ -70,10 +70,9 @@ void Initialize(void)
 //===================================================================
 
 
-    //makeshift 
-    objPos tempPos(-1, -1, 'o');
+    //makeshift objPos tempPos(1, 1, 'O');
 
-    GameMechRef->generateFood(tempPos);
+    //GameMechRef->generateFood();
 
     exitFlag = false;
 }
@@ -229,6 +228,4 @@ void CleanUp(void)
     GameMechRef->clearInput();
 
     //Gotta put all the delete's here still
-
-
 }

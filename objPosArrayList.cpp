@@ -4,7 +4,7 @@ objPosArrayList::objPosArrayList()
 {
     aList = new objPos[sizeArray];
     sizeList = 0;
-    sizeArray = 5;
+    sizeArray = 351; //Max size snake can be (border reference?)
 }
 
 objPosArrayList::~objPosArrayList()

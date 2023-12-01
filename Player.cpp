@@ -154,8 +154,12 @@ void Player::movePlayer()
 
     }
 
+    
+
+
+   
     // new current hed should be inserted t othe head of the llist
-    playerPosList->insertHead(currentHead);
+   playerPosList->insertHead(currentHead);
 
     // then, remove tail
     playerPosList->removeTail();

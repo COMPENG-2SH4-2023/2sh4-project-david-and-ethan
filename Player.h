@@ -22,7 +22,7 @@ class Player
         objPosArrayList* getPlayerPos(); // Upgrade this in iteration 3.
         void updatePlayerDir();
 
-        
+
         void movePlayer();
         //need more ations in here
         // - after inserting the head but before removing the tail
@@ -45,6 +45,7 @@ class Player
 
         // Need a reference to the Main Game Mechanisms
         GameMechs* mainGameMechsRef;
+        
 };
 
 #endif

@@ -4,7 +4,7 @@ objPos::objPos()
 {
     x = 0;
     y = 0;
-    symbol = 0; //NULL
+    symbol = 0;//NULL 
 }
 
 objPos::objPos(objPos &o)

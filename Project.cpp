@@ -90,9 +90,10 @@ void RunLogic(void)
 
 //Move Player =====
 
+    playerObject->updatePlayerDir();
+
     if(loseFlag == false)
     {
-        playerObject->updatePlayerDir();
         playerObject->movePlayer();
     }
 
@@ -195,7 +196,7 @@ void DrawScreen(void)
 
 void LoopDelay(void)
 {
-    MacUILib_Delay(DELAY_CONST); // 0.1s delay
+    MacUILib_Delay(DELAY_CONST);
 }
 
 
@@ -211,6 +212,13 @@ void CleanUp(void)
     delete myPos;
     delete foodPos;
 
+    for(int i = 0; i < GameMechRef->getBoardSizeX() + 2; i++)
+	{
+        delete[] *(gridScreen+i);
+	}
+
     delete[] gridScreen;
+    gridScreen = NULL;
+
     gridScreen = NULL;
 }

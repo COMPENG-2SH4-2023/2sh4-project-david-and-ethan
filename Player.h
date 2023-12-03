@@ -31,7 +31,7 @@ class Player
         //   and do not remove tail
         // - otherwise, remove tail and move on
 
-
+        bool checkSelfCollision();
         //lastly, add self collision check
         // - if self collided
         //  set loseFlag and exitFlas both to true (though Game MECH)

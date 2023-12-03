@@ -172,3 +172,24 @@ void Player::movePlayer()
     }
 
 }
+
+bool Player::checkSelfCollision()
+{
+    objPos currentHead;
+    objPos player;
+    playerPosList->getHeadElement(currentHead);
+
+    for(int i = 1; i < playerPosList->getSize(); i++)
+    {
+        playerPosList->getElement(player, i);
+            
+        if(player.x == currentHead.x && player.y == currentHead.y)
+        {
+            return true;
+
+        }
+    }
+
+
+
+}

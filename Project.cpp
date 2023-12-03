@@ -21,6 +21,7 @@ using namespace std;
 #define DELAY_CONST 100000
 
 bool exitFlag;
+bool loseFlag;
 
 void Initialize(void);
 void GetInput(void);
@@ -92,8 +93,11 @@ void RunLogic(void)
 
 //Move Player =====
 
-    playerObject->updatePlayerDir();
-    playerObject->movePlayer();
+    if(loseFlag == false)
+    {
+        playerObject->updatePlayerDir();
+        playerObject->movePlayer();
+    }
 
 //================
 
@@ -163,6 +167,7 @@ void RunLogic(void)
 //======================================================
 
 exitFlag = GameMechRef->getExitFlagStatus();
+loseFlag = playerObject->checkSelfCollision();
 
 
 }
@@ -171,6 +176,9 @@ void DrawScreen(void)
 {
 
     MacUILib_clearScreen(); 
+
+    if(loseFlag == false)
+    {
 
     int x = 0;
     int y = 0;
@@ -213,6 +221,11 @@ void DrawScreen(void)
         case 'd':
             MacUILib_printf("Snake Direction: RIGHT\n");
             break;
+    }
+
+    }else
+    {
+        MacUILib_printf("YOU STINK: YOUR SCORE:%d\n", GameMechRef->getScore());
     }
 
 }

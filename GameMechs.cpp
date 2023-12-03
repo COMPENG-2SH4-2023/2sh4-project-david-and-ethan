@@ -25,8 +25,6 @@ GameMechs::GameMechs(int boardX, int boardY)
     score = 0;
 }
 
-// do you need a destructor?
-
 
 
 bool GameMechs::getExitFlagStatus()

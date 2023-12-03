@@ -11,16 +11,8 @@ Player::Player(GameMechs* thisGMRef)
     tempPos.setObjPos(5, 5, '*');
 
 
-    //playerPos.setObjPos(5, 5, '*');
     playerPosList = new objPosArrayList();
     playerPosList->insertHead(tempPos);
-
-    // For debuggin, insert another 4 segments
-    /*playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);
-    playerPosList->insertHead(tempPos);*/
-
 
 }
 
@@ -34,28 +26,6 @@ Player::~Player()
 
 objPosArrayList* Player::getPlayerPos()
 {
-
-//Border Wrap Code ====================================================
-    /*if(playerPos.y > (mainGameMechsRef->getBoardSizeY() - 2))
-    {
-        playerPos.y = 1;
-    }
-    if(playerPos.y < 1)
-    {
-        playerPos.y = (mainGameMechsRef->getBoardSizeY() - 2);
-    }
-
-    if(playerPos.x > (mainGameMechsRef->getBoardSizeX() - 3))
-    {
-        playerPos.x = 1;
-    }
-    if(playerPos.x < 1)
-    {
-        playerPos.x = (mainGameMechsRef->getBoardSizeX() - 3);
-    }*/
-//====================================================
-    
-    //returnPos.setObjPos(playerPos.x, playerPos.y, playerPos.symbol);
     // return the reference to the playerPos arrray list
     return playerPosList;
 }
@@ -111,8 +81,6 @@ void Player::updatePlayerDir()
 void Player::movePlayer()
 {
     // PPA3 Finite State Machine logic
-
-    //objPos newHead;
 
     objPos currentHead;    //holding the pos info of the current head
     playerPosList->getHeadElement(currentHead);

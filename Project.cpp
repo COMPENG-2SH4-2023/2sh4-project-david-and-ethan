@@ -61,16 +61,13 @@ void Initialize(void)
     
 //Initialize Gridscreen object array to the heap ====================
 
-    gridScreen = new int*[GameMechRef->getBoardSizeX() + 2]; //Plus 2 to account for \n and null character(Actually not sure if we need to account for null character)
+    gridScreen = new int*[GameMechRef->getBoardSizeX() + 2]; 
 
 	for(int i = 0; i < GameMechRef->getBoardSizeX() + 2; i++)
 	{
 		gridScreen[i] = new int[GameMechRef->getBoardSizeY()];
 	}
 //===================================================================
-
-
-    //makeshift objPos tempPos(1, 1, 'O');
 
     objPosArrayList* playerBody = playerObject->getPlayerPos();
 
@@ -101,7 +98,7 @@ void RunLogic(void)
 
 //================
 
-    //Just resets myPos, not playerpos. So when you copy playerpos back into mypos it just pops back out?
+    
 
     char Playersymbol = myPos->symbol;
 
@@ -126,15 +123,10 @@ void RunLogic(void)
                     gridScreen[x][y] = tempBody.symbol;
                     drawn = true;
                     break;
-                    //MacUILib_printf("%c", tempBody.symbol);
+                    
                 }
             }
-            /*if(x == myPos->x && y == myPos->y)
-            {
-
-                gridScreen[myPos->x][myPos->y] = Playersymbol;
-    
-            }*/
+          
 
             if(drawn) continue;
 
@@ -180,50 +172,21 @@ void DrawScreen(void)
     if(loseFlag == false)
     {
 
-    int x = 0;
-    int y = 0;
+        int x = 0;
+        int y = 0;
 
-    for(x = 0; y < GameMechRef->getBoardSizeY(); y++)
-    {
-        for(x = 0; x < GameMechRef->getBoardSizeX(); x++)
+        for(x = 0; y < GameMechRef->getBoardSizeY(); y++)
         {
-            MacUILib_printf("%c", gridScreen[x][y]);
-        }       
+            for(x = 0; x < GameMechRef->getBoardSizeX(); x++)
+            {
+                MacUILib_printf("%c", gridScreen[x][y]);
+            }       
+        }
+
+        MacUILib_printf("\nSCORE:%d\n", GameMechRef->getScore());
     }
 
-    /*MacUILib_printf("Object:\n");
-    for(int l = 0; l < playerBody->getSize(); l++)
-    {
-        playerBody->getElement(tempBody, l);
-        MacUILib_printf("<%d, %d> ", tempBody.x, tempBody.y);
-    }*/
-
-    MacUILib_printf("\nSCORE:%d\n", GameMechRef->getScore());
-
-    switch(GameMechRef->getInput())
-    {
-        case '\0':
-            MacUILib_printf("Snake Direction: STOP\n");
-            break;
-
-        case 'w':
-            MacUILib_printf("Snake Direction: UP\n");
-            break;
-
-        case 's':
-            MacUILib_printf("Snake Direction: DOWN\n");
-            break;
-
-        case 'a':
-            MacUILib_printf("Snake Direction: LEFT\n");
-            break;
-
-        case 'd':
-            MacUILib_printf("Snake Direction: RIGHT\n");
-            break;
-    }
-
-    }else
+    else
     {
         MacUILib_printf("YOU STINK: YOUR SCORE:%d\n", GameMechRef->getScore());
     }

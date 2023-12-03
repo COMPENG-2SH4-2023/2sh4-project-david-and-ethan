@@ -30,7 +30,6 @@ void LoopDelay(void);
 void CleanUp(void);
 
 
-
 int main(void)
 {
 
@@ -163,6 +162,9 @@ void RunLogic(void)
     }
 //======================================================
 
+exitFlag = GameMechRef->getExitFlagStatus();
+
+
 }
 
 void DrawScreen(void)
@@ -228,5 +230,11 @@ void CleanUp(void)
 
     GameMechRef->clearInput();
 
-    //Gotta put all the delete's here still
+    delete GameMechRef;
+    delete playerObject;
+    delete myPos;
+    delete foodPos;
+
+    delete[] gridScreen;
+    gridScreen = NULL;
 }

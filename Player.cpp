@@ -66,7 +66,10 @@ void Player::updatePlayerDir()
     // PPA3 input processing logic   
 
     switch(input)
-        {    
+        { 
+            case ' ':
+                mainGameMechsRef->setExitTrue();
+            break;
             case 'w':
             case 'W':
             if(myDir != DOWN)
